@@ -56,6 +56,12 @@ Lead fields are `name`, `email`, `phone`, `company`, `source`, and `status`. Sta
 
 Run the API tests from `server/` with `npm test`. From `client/`, run `npm run lint` and `npm run build`.
 
+## GitHub Actions and deployment
+
+`.github/workflows/main.yml` runs the API tests and frontend lint/build on pull requests and pushes to `main`. A push to `main` also deploys the static frontend to GitHub Pages. Enable GitHub Pages with **GitHub Actions** as the build and deployment source. To connect a hosted API later, add the repository Actions variable `VITE_API_URL` with its public URL, including `/api` (for example, `https://api.example.com/api`).
+
+GitHub Pages hosts only the frontend. This frontend-only demo uses the app's localhost API default, so lead data actions are unavailable until an API is deployed. For a full demo, deploy the Express API and MongoDB separately, set `VITE_API_URL` to the API's public URL, and set the API's `CLIENT_URL` to the GitHub Pages origin so browser requests pass CORS checks.
+
 ## Assumptions and scope
 
 - This is a single shared workspace; authentication and per-user lead ownership are outside the required core scope.
